@@ -7,7 +7,7 @@ import './index.css';
 function App() {
   return (
     <div >
-      <h1 className="text-3xl font bold">Namaste react</h1>
+    
       <Head />
       <Body />
      
