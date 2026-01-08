@@ -5,7 +5,9 @@ import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Head = () => {
   const [searchQuery, SetSearchQuery] = useState("");
- // console.log(searchQuery);
+  // console.log(searchQuery);
+
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
     //API call
@@ -31,18 +33,19 @@ const Head = () => {
    * -re-render the component
    * -call useEffect()
    * -start a time -> make a api call after 200 ms-this is new
-   * 
-   * 
+   *
+   *
    * setTimeout(200)-start the timet--after 200 it will call getsuggetions()
    *
    */
 
   const getSearchSuggetions = async () => {
-    console.log("API call-"+ searchQuery);
+    console.log("API call-" + searchQuery);
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
 
     //console.log(json[1]);
+    setSuggestions(json[1]);
   };
 
   const dispatch = useDispatch();
@@ -69,15 +72,27 @@ const Head = () => {
         </a>
       </div>
       <div className="col-span-10 px-10">
-        <input
-          className="w-1/2 border border-gray-400 p-2 rounded-l-full"
-          type="text"
-          value={searchQuery}
-          onChange={(e) => SetSearchQuery(e.target.value)}
-        />
-        <button className="border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full">
-          🔍
-        </button>
+        <div>
+          <input
+            className="px-5 py-2 w-1/2 border border-gray-400 p-2 rounded-l-full"
+            type="text"
+            value={searchQuery}
+            onChange={(e) => SetSearchQuery(e.target.value)}
+          />
+          <button className="border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full">
+            🔍
+          </button>
+        </div>
+        <div className="fixed bg-white py-2 px-2 w-[42rem] shadow-lg rounded-lg border border-gray-100">
+          <ul>
+            <li className="py-2 px-3 shadow-sm hover:bg-gray-100">🔍 Iphone</li>
+            <li className="py-2 shadow-sm">🔍 Iphone Pro</li>
+            <li className="py-2 shadow-sm">🔍 Iphone Pro</li>
+            <li className="py-2 shadow-sm">🔍 Iphone Pro</li>
+            <li className="py-2 shadow-sm">🔍 Iphone Pro Max</li>
+            <li className="py-2 shadow-sm">🔍 Iphone Pro Max</li>
+          </ul>
+        </div>
       </div>
       <div className="col-span-1">
         <img
