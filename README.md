@@ -11,3 +11,21 @@ Deboucing with 200ms
 
 - if diff between two key stroke is < 200ms - Declne the api call
 - > 200ms make an api call
+
+
+Cache:
+time complexity to search inarray=O(n);
+time complexity to search in Object/Map= O(1)
+
+[i, ip, iph, ipho, iphone]
+
+{
+    i:
+    ip:
+    iph:
+    ipho:
+    iphone:
+
+}
+
+new Map();-even more optimised 
