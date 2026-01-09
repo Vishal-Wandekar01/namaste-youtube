@@ -8,6 +8,7 @@ const Head = () => {
   // console.log(searchQuery);
 
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     //API call
@@ -78,21 +79,24 @@ const Head = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => SetSearchQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
           />
           <button className="border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full">
             🔍
           </button>
         </div>
-        <div className="fixed bg-white py-2 px-2 w-[42rem] shadow-lg rounded-lg border border-gray-100">
-          <ul>
-            <li className="py-2 px-3 shadow-sm hover:bg-gray-100">🔍 Iphone</li>
-            <li className="py-2 shadow-sm">🔍 Iphone Pro</li>
-            <li className="py-2 shadow-sm">🔍 Iphone Pro</li>
-            <li className="py-2 shadow-sm">🔍 Iphone Pro</li>
-            <li className="py-2 shadow-sm">🔍 Iphone Pro Max</li>
-            <li className="py-2 shadow-sm">🔍 Iphone Pro Max</li>
-          </ul>
-        </div>
+        {showSuggestions && (
+          <div className="fixed bg-white py-2 px-2 w-[42rem] shadow-lg rounded-lg border border-gray-100">
+            <ul>
+              {suggestions.map((s) => (
+                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
+                  🔍 {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <div className="col-span-1">
         <img
