@@ -75,3 +75,6 @@ time complexity to search in Object/Map= O(1)
 }
 
 new Map();-even more optimised 
+
+
+Live chat >> Infinite Scroll  >>>> Pagination
